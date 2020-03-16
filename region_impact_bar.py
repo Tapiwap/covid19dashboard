@@ -1,12 +1,13 @@
 from bokeh.models import FactorRange
 from bokeh.transform import dodge
 from bokeh.models import ColumnDataSource, HoverTool
+from bokeh.models import NumeralTickFormatter
 from bokeh.plotting import figure
 
 def create_region_impact_bar(confirmed_df, death_df, recovered_df):
     """
     """
-    region_list = ['US', 'China', 'Italy']
+    region_list = ['China', 'Italy', 'Iran', 'US', 'Korea, South', 'Spain']
     c_totals = []
     d_totals = []
     r_totals = []
@@ -32,7 +33,14 @@ def create_region_impact_bar(confirmed_df, death_df, recovered_df):
 
     source = ColumnDataSource(data=data)
 
-    p = figure(x_range=region_list, plot_height=250, title="Covid19 By Country/Region")
+    TOOLTIPS  = [
+        ("Region/Country", "@region_list"),
+        ("Deceased", "@d_totals{0,0}"),
+        ("Recovered", "@r_totals{0,0}"),
+        ("Confirmed", "@c_totals{0,0}")
+    ]
+
+    p = figure(x_range=region_list, plot_width=750, plot_height=350, title="Covid19 By Country/Region", tooltips = TOOLTIPS)
 
     p.vbar(x=dodge('region_list', -0.25, range=p.x_range), top='c_totals', width=0.2, source=source,
         color="#FFC300", legend_label="Confirmed")
@@ -45,7 +53,8 @@ def create_region_impact_bar(confirmed_df, death_df, recovered_df):
 
     p.x_range.range_padding = 0.1
     p.xgrid.grid_line_color = None
-    p.legend.location = "top_left"
+    p.legend.location = "top_center"
     p.legend.orientation = "horizontal"
+    p.yaxis.formatter=NumeralTickFormatter(format="00")
 
     return p

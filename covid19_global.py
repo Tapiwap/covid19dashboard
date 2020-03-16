@@ -17,8 +17,8 @@ def create_world_map(df):
     tile_provider = get_provider(Vendors.CARTODBPOSITRON)
 
     # range bounds supplied in web mercator coordinates
-    p = figure(x_range=(-3000000, 12000000), y_range=(-3000000, 7000000),
-            x_axis_type="mercator", y_axis_type="mercator")
+    p = figure(x_range=(-3000000, 12000000), y_range=(-4000000, 7000000), plot_width=1050, plot_height=400,
+            x_axis_type="mercator", y_axis_type="mercator", title="Covid19 Globally")
 
     lat = list(df['Lat'])
     long = list(df['Long'])

@@ -7,6 +7,7 @@ from bokeh.io import curdoc
 
 import bokeh
 from bokeh.plotting import figure
+from bokeh.layouts import Row, Column
 from bokeh.models import ColumnDataSource, HoverTool
 
 from covid19_global import create_world_map
@@ -32,7 +33,8 @@ bar_chart = create_region_impact_bar(confirmed_df, death_df, recovered_df)
 vstacked_chart = create_stacked_chart(confirmed_df, death_df, recovered_df)
 pie_chart = create_pie_chart(confirmed_df, death_df, recovered_df)
 
-curdoc().add_root(world_map)
-curdoc().add_root(bar_chart)
-curdoc().add_root(vstacked_chart)
-curdoc().add_root(pie_chart)
+first_row = Row(world_map, pie_chart)
+second_row = Row(bar_chart, vstacked_chart)
+
+curdoc().add_root(first_row)
+curdoc().add_root(second_row)

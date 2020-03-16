@@ -22,7 +22,7 @@ def create_pie_chart(confirmed_df, death_df, recovered_df):
     data['angle'] = data['value']/data['value'].sum() * 2*pi
     data['color'] = ["#FFC300", "#FF5733", "#82E0AA"]
 
-    p = figure(plot_height=350, title="Confirmed vs Deceased vs Recovered", toolbar_location=None,
+    p = figure(plot_height=400, plot_width=430, title="Confirmed vs Deceased vs Recovered", toolbar_location=None,
            tools="hover", tooltips="@Cases: @value", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.4,

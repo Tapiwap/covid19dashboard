@@ -32,15 +32,15 @@ def create_stacked_chart(confirmed_df, death_df, recovered_df):
         y3=confirmed_sums_list,
     ))
 
-    """TOOLTIPS  = [
+    TOOLTIPS  = [
         ("Deceased", "@y1{0,0}"),
         ("Recovered", "@y2{0,0}"),
         ("Confirmed", "@y3{0,0}")
-    ]"""
+    ]
 
-    p = figure(x_axis_type='datetime', plot_width=800, plot_height=400, toolbar_location="right")
+    p = figure(x_axis_type='datetime', plot_width=750, plot_height=350, toolbar_location="right", title="Growth over Time", tooltips=TOOLTIPS)
 
-    p.varea_stack(['y1', 'y2', 'y3'], x='x', color=("#82E0AA", "#FF5733", "#FFC300"), source=source)
+    p.varea_stack(['y1', 'y2', 'y3'], x='x', color=("#FF5733", "#82E0AA", "#FFC300"), source=source)
 
     p.yaxis.formatter=NumeralTickFormatter(format="00")
 
