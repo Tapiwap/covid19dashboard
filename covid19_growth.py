@@ -11,8 +11,6 @@ def create_stacked_chart(confirmed_df, death_df, recovered_df):
     death_sums_list = []
     recovered_sums_list = []
 
-    print(dates)
-
     if 'x' in dates and 'y' in dates:
         dates.remove('x')
         dates.remove('y')

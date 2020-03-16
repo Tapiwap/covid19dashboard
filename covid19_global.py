@@ -26,6 +26,6 @@ def create_world_map(df):
     __wgs84_to_web_mercator(df)
 
     p.add_tile(tile_provider)
-    p.circle(x=df['x'], y=df['y'], size=10, fill_color="blue", fill_alpha=0.6)
+    p.circle(x=df['x'], y=df['y'], size=10, fill_color="#FFC300", fill_alpha=0.6)
 
     return p

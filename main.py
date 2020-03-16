@@ -12,6 +12,7 @@ from bokeh.models import ColumnDataSource, HoverTool
 from covid19_global import create_world_map
 from region_impact_bar import create_region_impact_bar
 from covid19_growth import create_stacked_chart
+from pie_chart import create_pie_chart
 
 # Create the data frames
 confirmed_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
@@ -29,7 +30,9 @@ recovered_df = pd.read_csv(io.StringIO(recovered_url.decode('utf-8')))
 world_map = create_world_map(confirmed_df)
 bar_chart = create_region_impact_bar(confirmed_df, death_df, recovered_df)
 vstacked_chart = create_stacked_chart(confirmed_df, death_df, recovered_df)
+pie_chart = create_pie_chart(confirmed_df, death_df, recovered_df)
 
 curdoc().add_root(world_map)
 curdoc().add_root(bar_chart)
 curdoc().add_root(vstacked_chart)
+curdoc().add_root(pie_chart)
