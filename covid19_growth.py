@@ -38,7 +38,7 @@ def create_stacked_chart(confirmed_df, death_df, recovered_df):
         ("Confirmed", "@y3{0,0}")
     ]
 
-    p = figure(x_axis_type='datetime', plot_width=750, plot_height=350, toolbar_location="right", title="Growth over Time", tooltips=TOOLTIPS)
+    p = figure(x_axis_type='datetime', plot_width=650, plot_height=350, toolbar_location="right", title="Growth over Time", tooltips=TOOLTIPS)
 
     p.varea_stack(['y1', 'y2', 'y3'], x='x', color=("#FF5733", "#82E0AA", "#FFC300"), source=source)
 

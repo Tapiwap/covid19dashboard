@@ -40,7 +40,7 @@ def create_region_impact_bar(confirmed_df, death_df, recovered_df):
         ("Confirmed", "@c_totals{0,0}")
     ]
 
-    p = figure(x_range=region_list, plot_width=750, plot_height=350, title="Covid19 By Country/Region", tooltips = TOOLTIPS)
+    p = figure(x_range=region_list, plot_width=650, plot_height=350, title="Covid19 By Country/Region", tooltips = TOOLTIPS)
 
     p.vbar(x=dodge('region_list', -0.25, range=p.x_range), top='c_totals', width=0.2, source=source,
         color="#FFC300", legend_label="Confirmed")
