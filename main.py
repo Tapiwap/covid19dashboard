@@ -12,10 +12,12 @@ from bokeh.models import ColumnDataSource, HoverTool
 
 from covid19_global import create_world_map
 from region_impact_bar import create_region_impact_bar
-from covid19_growth import create_stacked_chart
+from covid19_growth import create_chart
 from pie_chart import create_pie_chart
 from bokeh.models import Button
 from bokeh.models import Dropdown
+
+cofirmed_flag = 0
 
 # Create the data frames
 confirmed_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
@@ -42,15 +44,22 @@ dropdown = Dropdown(label="Dropdown button", button_type="success", menu=menu)
 # Draw the figures
 world_map = create_world_map(confirmed_df)
 bar_chart = create_region_impact_bar(confirmed_df, death_df, recovered_df)
-vstacked_chart = create_stacked_chart(confirmed_df, death_df, recovered_df)
+vstacked_chart = create_chart(confirmed_df, death_df = death_df, recovered_df = recovered_df)
 pie_chart = create_pie_chart(confirmed_df, death_df, recovered_df)
 
+#def confirmedBtn_onclick():
+#    create_chart(confirmed_df, "#FF5733")
+
+#confirmedBtn.on_click(confirmedBtn_onclick)
+#deceasedBtn.on_click(deceasedBtn_onclick)
+#recoveredBtn.on_click(recoveredBtn_onclick)
+
 # Create the Rows
-first_row = Row(defaultBtn, confirmedBtn, deceasedBtn, recoveredBtn)
+#first_row = Row(defaultBtn, confirmedBtn, deceasedBtn, recoveredBtn)
 second_row = Row(world_map, pie_chart)
 third_row = Row(bar_chart, vstacked_chart)
 
 # Add to current document
-curdoc().add_root(first_row)
+#curdoc().add_root(first_row)
 curdoc().add_root(second_row)
 curdoc().add_root(third_row)

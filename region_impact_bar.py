@@ -7,7 +7,7 @@ from bokeh.plotting import figure
 def create_region_impact_bar(confirmed_df, death_df, recovered_df):
     """
     """
-    region_list = ['China', 'Italy', 'Iran', 'US', 'Korea, South', 'Spain']
+    region_list = ['China', 'Italy', 'Iran', 'US', 'Korea, South', 'Spain', 'France', 'Germany', 'Switzerland', 'United Kingdom']
     c_totals = []
     d_totals = []
     r_totals = []
@@ -40,7 +40,7 @@ def create_region_impact_bar(confirmed_df, death_df, recovered_df):
         ("Confirmed", "@c_totals{0,0}")
     ]
 
-    p = figure(x_range=region_list, plot_width=650, plot_height=350, title="Covid19 By Country/Region", tooltips = TOOLTIPS)
+    p = figure(x_range=region_list, plot_width=650, plot_height=350, title="Covid19 By Country/Region (Top 10)", tooltips = TOOLTIPS)
 
     p.vbar(x=dodge('region_list', -0.25, range=p.x_range), top='c_totals', width=0.2, source=source,
         color="#FFC300", legend_label="Confirmed")
@@ -56,5 +56,6 @@ def create_region_impact_bar(confirmed_df, death_df, recovered_df):
     p.legend.location = "top_center"
     p.legend.orientation = "horizontal"
     p.yaxis.formatter=NumeralTickFormatter(format="00")
+    p.xaxis.major_label_orientation = 1
 
     return p
